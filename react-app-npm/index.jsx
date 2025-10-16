@@ -1,27 +1,41 @@
-import '/style.css'
-// import ReactDOM from '/react-dom/client'
-function Book(book) {
-    return (
-        <div className="card">
-            <img src={book.image} height="200" width='200' alt="book image" />
-            <h3>Title:(book Title)</h3>
-            <h4>Price:₹(book Price)</h4>
-            <button>ADD to cart</button>
-        </div>
-    )
+function Book({ book }) {
+  return (
+    <div className="card">
+      <img src={book.image} alt={book.title} />
+      <h3>{book.title}</h3>
+      <p>Price: ₹{book.price}</p>
+      <button>Add to Cart</button>
+    </div>
+  );
 }
 
-const book = [{ image: '', title: 'maths', price: 679 },
-{ image: '', title: 'physics', price: 908 },
-{ image: '', title: 'chemistry', price: 900 },
-]
+const books = [
+  {
+    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400",
+    title: "Mathematics Essentials",
+    price: 785,
+  },
+  {
+    image: "https://m.media-amazon.com/images/I/61GmK-tpSxL._UF1000,1000_QL80_.jpg",
+    title: "Chemistry Concepts",
+    price: 375,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400",
+    title: "Physics Fundamentals",
+    price: 465,
+  },
+];
 
-function App(){
-    return(
-        <div>
-            {books.map((b,i)=>(
-                <Book key={i} book={b}/>
-            ))}
-        </div>
-    )
+function App() {
+  return (
+    <div className="book-list">
+      {books.map((b, i) => (
+        <Book key={i} book={b} />
+      ))}
+    </div>
+  );
 }
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
